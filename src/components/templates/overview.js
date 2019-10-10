@@ -4,7 +4,17 @@ import { Link } from "react-router-dom"
 function CyberwayTemplates() {
     return (
         <div className="card-body">
-            <Link to={"/templates/cyberway/bidname"}>bidname</Link>
+            <div className="row">
+                <div className="col-sm-4">
+                    <Link to={"/templates/cyberway/transfer"}>transfer</Link>
+                </div>
+                <div className="col-sm-4">
+                    <div><Link to={"/templates/cyberway/bidname"}>bidname</Link></div>
+                    <div><Link to={"/templates/cyberway/bidrefund"}>bidrefund</Link></div>
+                </div>
+                <div className="col-sm-4">
+                </div>
+            </div>
         </div>
     )
 }
@@ -12,7 +22,8 @@ function CyberwayTemplates() {
 function GolosTemplates() {
     return (
         <div className="card-body">
-            <Link to={"/templates/golos/upvote"}>upvote</Link>
+            <div><Link to={"/templates/golos/upvote"}>upvote</Link></div>
+            <div><Link to={"/templates/golos/delegate"}>delegate</Link></div>
         </div>
     )
 }

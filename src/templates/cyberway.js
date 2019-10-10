@@ -7,7 +7,7 @@ export function bidname(bidder, newname, bid) {
             "account": "cyber",
             "name": "bidname",
             "authorization": [{
-                "actor": "zhm555xmzkd3",
+                "actor": bidder,
                 "permission": "active"
               }
             ],
@@ -17,4 +17,38 @@ export function bidname(bidder, newname, bid) {
     }
 }
 
+export function bidrefund(bidder) {
+  return {
+      "actions": [{
+          "account": "cyber",
+          "name": "bidrefund",
+          "authorization": [{
+              "actor": bidder,
+              "permission": "active"
+            }
+          ],
+          "data": {bidder}
+        }
+      ]
+  }
+}
+
+export function transfer(from, to, amount, asset, memo) {
+  
+  const quantity = parseFloat(amount).toFixed(asset.decs) + " " + asset.symbol;
+
+  return {
+      "actions": [{
+          "account": "cyber.token",
+          "name": "transfer",
+          "authorization": [{
+              "actor": from,
+              "permission": "active"
+            }
+          ],
+          "data": {from, to, quantity, memo}
+        }
+      ]
+  }
+}
 

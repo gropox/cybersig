@@ -8,10 +8,11 @@ import axios from "axios";
 import bs58 from "bs58";
 
 const HOST = 'https://node-cyberway.golos.io';
+const HOST3 = 'http://localhost:8888';
 
-export async function sendTransaction(key, trx, host) {
-  const rpc = new JsonRpc(host || HOST);
-  const signatureProvider = new JsSignatureProvider([key]);
+export async function sendTransaction(keys, trx, host) {
+  const rpc = new JsonRpc(HOST);
+  const signatureProvider = new JsSignatureProvider(keys);
 
   const api = new Api({
     rpc,
@@ -25,7 +26,6 @@ export async function sendTransaction(key, trx, host) {
     expireSeconds: 3600,
   });
 
-  console.log("sendgtransaction: results", results);
   return results;
 }
 
@@ -50,42 +50,13 @@ export function isWif(privWif) {
   return isWif;
 };
 
-export async function sendRequest(uri, data) {
+export async function getTableRows(data) {
   
-    const myRequest = new Request(HOST + uri, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
+    const rpc = new JsonRpc(HOST, { fetch });  
 
-    const response = await fetch(myRequest);
-      console.log(uri, data, response);
-      if(!response.ok) {
-          return {}
-      }
-      return await response.json();
-  
-/*
-  return new Promise((resolve,reject) => {
-    var url = 'https://node-cyberway.golos.io/v1/chain/get_table_rows';
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.onload = function () {
-      console.log(xhr);
-      resolve(xhr.response);
-    };
-
-    xhr.onerror = function () {
-      console.log(xhr)
-      reject(Error("error xhr"))
-    };
-
-    xhr.send(JSON.stringify(data));
-  });
-  */
+    const resp = await rpc.get_table_rows(data);
+    if(resp.rows) {
+      return resp.rows;
+    }
+    return [];
 }

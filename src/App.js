@@ -7,7 +7,12 @@ import NavBar from "./navbar";
 
 
 import Bidname from "./components/templates/cyberway/bidname";
+import Bidrefund from "./components/templates/cyberway/bidrefund";
+import Transfer from "./components/templates/cyberway/transfer";
 import TempaltesOverview from "./components/templates/overview"
+
+import GolosUpvote from "./components/templates/golos/upvote";
+import GolosDelegate from "./components/templates/golos/delegate";
 
 function App(props) {
   return (
@@ -33,6 +38,18 @@ function App(props) {
                 </Route>
                 <Route exact path="/templates/cyberway/bidname">
                   <Bidname props={{ ...props }} />
+                </Route>
+                <Route exact path="/templates/cyberway/bidrefund">
+                  <Bidrefund props={{ ...props }} />
+                </Route>
+                <Route exact path="/templates/cyberway/transfer">
+                  <Transfer props={{ ...props }} />
+                </Route>
+                <Route exact path="/templates/golos/upvote">
+                  <GolosUpvote props={{ ...props }} />
+                </Route>
+                <Route exact path="/templates/golos/delegate">
+                  <GolosDelegate props={{ ...props }} />
                 </Route>
               </Switch>
             </Router>
