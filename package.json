@@ -1,5 +1,6 @@
 {
   "name": "cybersig",
+  "homepage": "http://gropox.github.io/cybersig",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +10,7 @@
     "cyberwayjs": "^20.0.0-beta8",
     "gh-pages": "^2.1.1",
     "import": "^0.0.6",
+    "jquery": "3.3.1",
     "parse-json": "^5.0.0",
     "query-string": "^6.8.3",
     "react": "^16.10.2",
@@ -22,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
