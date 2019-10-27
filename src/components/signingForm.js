@@ -12,12 +12,9 @@ function SigningForm(props) {
 
     const onChange = (idx, newKey) => {
         const newKeys = [...keys];
-        console.log("keys", keys, "newKeys", newKeys, "idx", idx, "newKey", newKey);
         newKeys[idx] = newKey;
-        console.log("newKeys", newKeys);
         setKeys(newKeys);
     }
-    console.log("keys", keys, keys.length);
     return (
         <form>
             <div className="alert alert-primary" role="alert">
